@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.boardMapper">
+    <select id="selectBoardList"  resultType="com.example.demo.board.boardVO">
+        <![CDATA[
+            SELECT
+                 *
+            FROM
+                TB_BOARD
+         ]]>
+    </select>
+</mapper>
+
+        <!--
+        CREATE TABLE TB_BOARD
+    (
+        IDX int PRIMARY KEY,
+        PARENT_IDX int,
+        TITLE varchar(100) NOT NULL,
+        CONTENTS VARCHAR(4000) NOT NULL,
+        HIT_CNT int NOT NULL,
+        DEL_GB VARCHAR(1) DEFAULT 'N' NOT NULL,
+        CREA_DTM varchar(10) NOT NULL,
+        CREA_ID VARCHAR(30) NOT NULL
+    );
+
+    alter table TB_BOARD change COLUMN IDX IDX int COMMENT '인덱스';
+    alter table TB_BOARD change COLUMN PARENT_IDX PARENT_IDX int COMMENT '부모인덱스';
+    alter table TB_BOARD change COLUMN TITLE TITLE varchar(100) COMMENT '제목';
+    alter table TB_BOARD change COLUMN CONTENTS CONTENTS varchar(4000) COMMENT '내용';
+    alter table TB_BOARD change COLUMN HIT_CNT HIT_CNT int COMMENT '조회수';
+    alter table TB_BOARD change COLUMN DEL_GB DEL_GB varchar(1) COMMENT '삭제구분';
+    alter table TB_BOARD change COLUMN CREA_DTM CREA_DTM varchar(10) COMMENT '생성일자';
+    alter table TB_BOARD change COLUMN CREA_ID CREA_ID varchar(30) COMMENT '생성자ID';
+        -->

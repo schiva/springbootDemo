@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/study?useSSL=false
+    username: schiva
+    password: 1111
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
+# 출력되는 로그에 색상 출력
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  file: ./log
+  level:
+    root: DEBUG
+    com.example.demo: DEBUG
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    lazyLoadingEnabled=true
+#    aggressiveLazyLoading=false
+#    mapUnderscoreToCamelCase=true
+
+
+
+
+
