@@ -2,15 +2,14 @@ package com.example.demo.board;
 
 
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 @RestController
 public class boardController {
@@ -30,6 +29,49 @@ public class boardController {
         return list;
     }
 
+    @RequestMapping("/board2")
+    public HashMap<String , Object> board2() throws Exception{
+        List<boardVO> list = mapper.selectBoardList();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("DATA", list);
+        map.put("COUNT", list.size());
+        map.put("RESULT","OK");
+        return map;
+    }
+
+    // Client에서  content-type=application/json 으로 json 데이타 발송시 수신 방법.
+    @RequestMapping(value = "/post_json", method = RequestMethod.POST)
+    public HashMap<String, Object> post_json(@RequestBody Map<String, Object> payload) throws Exception{
+      HashMap<String, Object>  map = new HashMap<>();
+      map.put("DATA", payload);
+      map.put("RESULT", "OK");
+      return map;
+    }
+
+    @RequestMapping(value = "/post_json2", method = RequestMethod.POST)
+    public HashMap<String, Object> post_json2(@RequestBody JSONPObject payload) throws Exception{
+//        {
+//            "testkey": "testvalue",
+//               "name": "홍길동",
+//               "age":  10
+//        }
+
+        HashMap<String, Object>  map = new HashMap<>();
+        map.put("DATA", payload);
+        map.put("RESULT", "OK");
+        return map;
+    }
+
+//    @RequestMapping(
+//            value = "/process",
+//            method = RequestMethod.POST,
+//            consumes = "text/plain")
+//    public void process(@RequestBody String payload) throws Exception {
+//
+//        System.out.println(payload);
+//
+//    }
+
     @RequestMapping(value = "/param/{seq}", method = RequestMethod.GET)
     public boardVO boardHello(@PathVariable("seq") int seq) throws Exception{
         boardVO dt = new boardVO();
@@ -38,7 +80,6 @@ public class boardController {
         return  dt;
     }
 
-//    http://localhost:8080/getparam?str=test
     @RequestMapping("/getparam")
     public String restTest(@RequestParam(value = "str", required = false) String str){
         if(str == null) {
