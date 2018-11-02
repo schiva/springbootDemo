@@ -97,4 +97,20 @@ public class boardController {
         }
     }
 
+    @RequestMapping("test")
+    public JSONResponse<List<boardVO>> GetTestData(){
+
+        List<boardVO> list = null;
+        try {
+            list = mapper.selectBoardList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JSONResponse<List<boardVO>> response = new JSONResponse<List<boardVO>>();
+        response.setCode(200);
+        response.setMessage("정상");
+        response.setData( list );
+        return response;
+    }
+
 }
