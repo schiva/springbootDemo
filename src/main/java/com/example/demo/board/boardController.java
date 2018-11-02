@@ -1,10 +1,7 @@
 package com.example.demo.board;
 
-
-
 import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
@@ -12,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@Slf4j
 public class boardController {
-
-    private static final Log LOG = LogFactory.getLog( boardController.class );
 
     @Autowired
     private boardMapper mapper;
@@ -22,9 +18,9 @@ public class boardController {
     @RequestMapping("/board")
     public List<boardVO> boardHome() throws Exception{
 
-        LOG.debug("/board 호출되었습니다.");
-        LOG.info("/board 호출되었습니다.");
-        LOG.error("/board 호출되었습니다.");
+        log.debug("/board 호출되었습니다.");
+        log.info("/board 호출되었습니다.");
+        log.error("/board 호출되었습니다.");
         List<boardVO> list = mapper.selectBoardList();
         return list;
     }
@@ -45,20 +41,27 @@ public class boardController {
       HashMap<String, Object>  map = new HashMap<>();
       map.put("DATA", payload);
       map.put("RESULT", "OK");
+
+      String keyname = payload.get("keyname").toString();
+      Integer age    = Integer.valueOf( payload.get("age").toString() );
+
+      log.info("keyname :" + keyname);
+      log.info("age:" + age);
+      log.info("map" + map);
+
       return map;
     }
 
     @RequestMapping(value = "/post_json2", method = RequestMethod.POST)
     public HashMap<String, Object> post_json2(@RequestBody JSONPObject payload) throws Exception{
-//        {
-//            "testkey": "testvalue",
-//               "name": "홍길동",
-//               "age":  10
-//        }
 
         HashMap<String, Object>  map = new HashMap<>();
         map.put("DATA", payload);
         map.put("RESULT", "OK");
+
+        //LOG.info("PayLoad: " + payload.toString() );
+
+        // todo : JSONObject 의 KEY에 해당 하는 값읽는 방법.
         return map;
     }
 
