@@ -2,6 +2,7 @@ server:
   port: 8080
 
 spring:
+  profiles: default
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/study?useSSL=false
@@ -21,8 +22,8 @@ spring:
 logging:
   file: ./log
   level:
-    root: DEBUG
-    com.example.demo: DEBUG
+    root: INFO
+    com.example.demo: INFO
 
 
 mybatis:

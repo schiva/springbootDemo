@@ -1,3 +1,5 @@
+// todo : google firebase 연동.
+// todo : post 로 수신된 데이타( json , form fields )로 DB insert ( 일반 Key, PK 자동증가형 )
 package com.example.demo.board;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
