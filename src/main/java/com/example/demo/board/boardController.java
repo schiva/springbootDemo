@@ -17,6 +17,7 @@ public class boardController {
     @Autowired
     private boardMapper mapper;
 
+
     @RequestMapping("/board")
     public List<boardVO> boardHome() throws Exception{
 
@@ -55,15 +56,16 @@ public class boardController {
     }
 
     @RequestMapping(value = "/post_json2", method = RequestMethod.POST)
-    public HashMap<String, Object> post_json2(@RequestBody JSONPObject payload) throws Exception{
+    public HashMap<String, Object> post_json2(@RequestBody JSONCustomData payload) throws Exception{
 
         HashMap<String, Object>  map = new HashMap<>();
         map.put("DATA", payload);
         map.put("RESULT", "OK");
 
-        //LOG.info("PayLoad: " + payload.toString() );
+        log.info("Age : " + payload.getAge());
+        log.info("Name:", payload.getName());
+        log.info("keyname:", payload.getKeyname());
 
-        // todo : JSONObject 의 KEY에 해당 하는 값읽는 방법.
         return map;
     }
 
@@ -86,7 +88,8 @@ public class boardController {
     }
 
     @RequestMapping("/getparam")
-    public String restTest(@RequestParam(value = "str", required = false) String str){
+    public String restTest(@RequestParam(value = "str", required = false) String str,
+                           @RequestParam(value = "msg2", required = false, defaultValue = "msg2Default") String msg2 ){
         if(str == null) {
             return "str=값 필요합니다.";
         }else {
