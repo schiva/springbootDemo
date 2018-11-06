@@ -19,11 +19,11 @@ spring:
     ansi:
       enabled: always
 
-logging:
-  file: ./log
-  level:
-    root: INFO
-    com.example.demo: INFO
+#logging:
+#  file: ./log
+#  level:
+#    root: INFO
+#    com.example.demo: INFO
 
 
 mybatis:
