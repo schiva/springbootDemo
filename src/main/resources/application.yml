@@ -3,6 +3,12 @@ server:
 
 spring:
   profiles: default
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/study?useSSL=false
@@ -13,6 +19,7 @@ spring:
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
+
 
 # 출력되는 로그에 색상 출력
   output:
