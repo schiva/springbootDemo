@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="APPENDER_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APPENDER_FILE_REQUEST"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/api-request.log</file>
+        <encoder>
+            <Pattern>%msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/api-request.%d{yyyy-MM-dd}.log</FileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.example.demo" level="DEBUG" additivity="false">
+        <appender-ref ref="APPENDER_CONSOLE"/>
+        <appender-ref ref="APPENDER_FILE_REQUEST"/>
+    </logger>
+    <logger name="com.example.demo.common.logging.LoggingFilter" level="DEBUG" additivity="false">
+        <appender-ref ref="APPENDER_CONSOLE"/>
+    </logger>
+    <logger name="org.springframework"  level="INFO" additivity="false">
+        <appender-ref ref="APPENDER_CONSOLE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="APPENDER_CONSOLE" />
+        <!--<appender-ref ref="APPENDER_FILE_REQUEST" />-->
+    </root>
+</configuration>
