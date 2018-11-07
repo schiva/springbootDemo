@@ -7,4 +7,5 @@ import java.util.List;
 @Mapper
 public interface boardMapper {
     public List<boardVO> selectBoardList() throws Exception;
+    void insertBoard(boardVO boardVO);
 }
