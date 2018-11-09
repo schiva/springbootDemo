@@ -3,6 +3,12 @@ server:
 
 spring:
   profiles: default
+  http:
+    #한글관련 UTF-8 설정.
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -11,7 +17,8 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/study?useSSL=false
+    # 연결설정 유니코드사용 :
+    url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=utf8
     username: schiva
     password: 1111
     testWhileIdle: true

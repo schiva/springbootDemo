@@ -11,7 +11,7 @@
     </select>
     <insert id="insertBoard">
         INSERT INTO TB_BOARD (IDX, PARENT_IDX, TITLE, CONTENTS, HIT_CNT, DEL_GB, CREA_DTM)
-        VALUES (#{ID}, #{PARENT_IDX}, #{TITLE}, #{CONTENTS}, #{HIT_CNT}, #{DEL_GB}, #{CREA_DTM} )
+        VALUES (#{IDX}, #{PARENT_IDX}, #{TITLE}, #{CONTENTS}, #{HIT_CNT}, #{DEL_GB}, #{CREA_DTM} )
     </insert>
 </mapper>
 
